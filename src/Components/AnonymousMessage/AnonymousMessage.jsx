@@ -17,8 +17,8 @@ const AnonymousMessage = () => {
     const { ciudad } = IpLocationCity();
 
     // Usuario con permisos limitados
-    const email = "msg@app.com";
-    const password = "msgapp";
+    const email = import.meta.env.VITE_EMAIL_AUTOMATICO;
+    const password = import.meta.env.VITE_PASSWORD_AUTOMATICO;
 
     // 🔹 Login automático
     useEffect(() => {
