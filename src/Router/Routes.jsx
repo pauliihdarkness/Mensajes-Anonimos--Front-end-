@@ -19,10 +19,9 @@ const Router = createBrowserRouter([
     element: <PerfilUsuarioPage />
   },
   {
-    path: '/mensaje-anonimo',
+    path: '/mensaje-anonimo/user/:userId',
     element: <MensajeAnonimoPage />
   },
-
   {
     path: '/*',
     element: <NotFoundPage />
