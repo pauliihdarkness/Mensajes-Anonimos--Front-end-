@@ -1,0 +1,64 @@
+.msg-container {
+    margin: 2rem auto;
+    max-width: 600px;
+    box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.1),
+        -0.5rem -0.5rem 1rem rgba(255, 255, 255, 0.7);
+    border-radius: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.header-msg-anonimo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.header-msg-user-name {
+    font-weight: bold;
+}
+
+.header-msg-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.header-msg-user-img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    filter: drop-shadow(0 0 0.1rem #383838);
+}
+
+.msg-anonimo {
+    display: block;
+    width: 95%;
+    padding: 0.75rem;
+    margin: 1rem auto;
+    max-width: 600px;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+
+
+.btn-send-msg {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-send-msg:hover {
+    background-color: #ddd;
+}

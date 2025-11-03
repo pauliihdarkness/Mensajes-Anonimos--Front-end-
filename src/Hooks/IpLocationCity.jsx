@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const IpLocationCity = () => {
-  const locationCityApi = import.meta.env.VITE_IP_LOCATION_CITY_API;
+  const locationCityApi = import.meta.env.VITE_LOCATION_API_URL;
 
   const [ciudad, setCiudad] = useState("Localización desconocida");
   const [loading, setLoading] = useState(true);

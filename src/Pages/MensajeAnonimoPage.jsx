@@ -1,14 +1,15 @@
-import React from 'react'
+import AnonymousMessage from "../Components/AnonymousMessage/AnonymousMessage";
 
 const MensajeAnonimoPage = () => {
+
   return (
     <>
       <main>
-        <h1>Página de Mensaje Anónimo</h1>
-        <p>Aquí puedes enviar y leer mensajes anónimos.</p>
+        <AnonymousMessage />
       </main>
     </>
-  )
-}
+  );
+};
 
-export default MensajeAnonimoPage
+export default MensajeAnonimoPage;
+
