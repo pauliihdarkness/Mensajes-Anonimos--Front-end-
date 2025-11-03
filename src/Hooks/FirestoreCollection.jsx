@@ -13,7 +13,7 @@ import { db } from "../Config/FirebaseConfig";
  * Custom Hook para CRUD en una colección de Firestore
  * @param {string} collectionName - nombre de la colección en Firestore
  */
-const useFirestoreCollection = (collectionName) => {
+const FirestoreCollection = (collectionName) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -82,4 +82,4 @@ const useFirestoreCollection = (collectionName) => {
   };
 };
 
-export default useFirestoreCollection;
+export default FirestoreCollection;
