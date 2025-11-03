@@ -1,7 +1,14 @@
 // src/firebaseConfig.js
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
+import {
+    getAuth,
+    signInAnonymously,
+    onAuthStateChanged,
+    signOut,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} from "firebase/auth";
 
 // ⚙️ Configuración desde tus variables de entorno (.env)
 const firebaseConfig = {
@@ -20,27 +27,100 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// 🧠 Función auxiliar para asegurar autenticación anónima
-const iniciarAuthAnonimo = async () => {
+// 🧠 Crear un nuevo usuario anónimo
+const crearUsuarioAnonimo = async () => {
     try {
-        const user = auth.currentUser;
-        if (!user) {
-            const result = await signInAnonymously(auth);
-            console.log("Usuario anónimo autenticado:", result.user.uid);
-        }
+        const result = await signInAnonymously(auth);
+        console.log("✅ Usuario anónimo creado:", result.user.uid);
+        return result.user;
     } catch (error) {
-        console.error("Error al iniciar sesión anónima:", error);
+        console.error("❌ Error al crear usuario anónimo:", error);
+        throw error;
     }
 };
 
-// Escuchar cambios en la sesión
+
+// 🔑 Iniciar sesión con usuario anónimo existente
+const iniciarSesionAnonima = async () => {
+    try {
+        const user = auth.currentUser;
+        if (user) {
+            console.log("🔐 Sesión anónima activa:", user.uid);
+            return user;
+        } else {
+            console.log("⚙️ No hay sesión activa, creando nuevo usuario...");
+            const nuevoUser = await signInAnonymously(auth);
+            console.log("✅ Usuario anónimo autenticado:", nuevoUser.user.uid);
+            return nuevoUser.user;
+        }
+    } catch (error) {
+        console.error("❌ Error al iniciar sesión anónima:", error);
+        throw error;
+    }
+};
+
+
+// 🚪 Cerrar sesión (opcional)
+const cerrarSesion = async () => {
+    try {
+        await signOut(auth);
+        console.log("👋 Sesión cerrada correctamente.");
+    } catch (error) {
+        console.error("❌ Error al cerrar sesión:", error);
+    }
+};
+
+// 👂 Escuchar cambios en el estado de autenticación
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        console.log("🔑 Usuario conectado:", user.uid);
+        console.log("🔑 Usuario conectado");
+    } else {
+        console.log("👤 No hay usuario activo.");
+    }
+});
+const crearUsuarioConEmail = async (email, password) => {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        console.log("✅ Usuario creado:", userCredential.user.uid);
+        return userCredential.user;
+    } catch (error) {
+        console.error("❌ Error al crear usuario con email:", error);
+        throw error;
+    }
+};
+
+// 🔹 Iniciar sesión con email y contraseña
+const iniciarSesionConEmail = async (email, password) => {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        return userCredential.user;
+    } catch (error) {
+        console.error("❌ Error al iniciar sesión con email:", error);
+        throw error;
+    }
+};
+
+
+
+// 🔹 Escuchar cambios en la sesión
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log("🔑 Usuario conectado");
     } else {
         console.log("👤 No hay usuario activo.");
     }
 });
 
-// 🧩 Exportar para usar en tus hooks o componentes
-export { db, auth, iniciarAuthAnonimo };
+// 🧩 Exportar todo para usar en tus hooks o componentes
+export {
+    db,
+    auth,
+    crearUsuarioAnonimo,
+    iniciarSesionAnonima,
+    cerrarSesion,
+    crearUsuarioConEmail,
+    iniciarSesionConEmail
+};
+
+
+

@@ -19,7 +19,7 @@ const Router = createBrowserRouter([
     element: <PerfilUsuarioPage />
   },
   {
-    path: '/mensaje-anonimo/user/:userId',
+    path: '/msg/user/:userId',
     element: <MensajeAnonimoPage />
   },
   {

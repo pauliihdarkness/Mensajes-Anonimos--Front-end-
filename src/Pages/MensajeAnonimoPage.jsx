@@ -1,13 +1,12 @@
 import AnonymousMessage from "../Components/AnonymousMessage/AnonymousMessage";
 
+
 const MensajeAnonimoPage = () => {
 
   return (
-    <>
-      <main>
+    <main>
         <AnonymousMessage />
-      </main>
-    </>
+    </main>
   );
 };
 
