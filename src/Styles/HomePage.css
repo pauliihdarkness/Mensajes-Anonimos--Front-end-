@@ -1,0 +1,92 @@
+/* General Styles */
+.homepage {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 3em;
+    margin: 0 0 10px 0;
+}
+
+.hero-section p {
+    font-size: 1.2em;
+    margin: 0 0 20px 0;
+}
+
+.hero-section .start-button {
+    text-decoration: none;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* How It Works Section */
+.how-it-works-section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.how-it-works-section h2 {
+    font-size: 2em;
+    margin: 0 0 30px 0;
+}
+
+.how-it-works-section .steps {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.how-it-works-section .step {
+    max-width: 300px;
+}
+
+.how-it-works-section .step h3 {
+    font-size: 1.5em;
+}
+
+/* Features Section */
+.features-section {
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.features-section h2 {
+    font-size: 2em;
+    margin: 0 0 30px 0;
+}
+
+.features-section .features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.features-section .feature {
+    max-width: 300px;
+}
+
+.features-section .feature h3 {
+    font-size: 1.5em;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}

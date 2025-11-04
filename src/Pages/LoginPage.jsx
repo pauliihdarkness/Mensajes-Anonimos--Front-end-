@@ -1,3 +1,4 @@
+import '../Styles/LoginPage.css';
 
 const LoginPage = () => {
 
@@ -5,18 +6,13 @@ const LoginPage = () => {
   return (
     <main>
 
-      <div style={{
-        textAlign: 'center',
-        padding: '50px',
-        fontFamily: 'Arial, sans-serif',
-        color: '#333',
-      }}>
-        <h1 style={{ fontSize: '3em' }}>🚧 Página en Construcción 🚧</h1>
-        <p style={{ fontSize: '1.2em' }}>
+      <div className="login-page-container">
+        <h1>🚧 Página en Construcción 🚧</h1>
+        <p>
           Estamos trabajando duro para traerte algo increíble.<br />
           Vuelve pronto para descubrirlo.
         </p>
-        <p style={{ marginTop: '20px', fontStyle: 'italic', color: '#777' }}>
+        <p className="patience-message">
           Gracias por tu paciencia 😊
         </p>
       </div>
@@ -26,4 +22,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-

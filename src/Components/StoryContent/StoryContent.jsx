@@ -1,9 +1,12 @@
 import html2canvas from "html2canvas";
+import { useRef } from "react";
+import '../../Styles/StoryContent.css';
 
-const StoryContent = ({ message }) => {
-    // Función para generar la imagen y compartir
+const StoryContent = ({ message, onClose }) => {
+    const storyContentRef = useRef(null);
+
     const compartirImagenStory = async () => {
-        const element = document.getElementById("story-content");
+        const element = storyContentRef.current;
         if (!element) return;
 
         const canvas = await html2canvas(element, { scale: 2 });
@@ -12,7 +15,6 @@ const StoryContent = ({ message }) => {
 
             const file = new File([blob], "mensaje_story.png", { type: "image/png" });
 
-            // Usar Web Share API si está disponible (solo móvil)
             if (navigator.canShare && navigator.canShare({ files: [file] })) {
                 try {
                     await navigator.share({
@@ -24,7 +26,6 @@ const StoryContent = ({ message }) => {
                     console.error("Error compartiendo:", error);
                 }
             } else {
-                // Si no hay soporte, abrir la imagen en otra pestaña
                 const url = URL.createObjectURL(blob);
                 window.open(url, "_blank");
             }
@@ -32,73 +33,18 @@ const StoryContent = ({ message }) => {
     };
 
     return (
-        <div
-            style={{
-                width: "100%",
-                height: "100vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                background: "linear-gradient(135deg, #f72585, #7209b7)",
-            }}
-        >
-            <div
-                id="story-content"
-                style={{
-                    width: "25vw",
-                    minWidth: "200px",
-                    borderRadius: "10px",
-                    border: "1px solid #ccc",
-                    overflow: "hidden",
-                    display: "flex",
-                    flexDirection: "column",
-                    textAlign: "center",
-                }}
-            >
-                {/* Header */}
-                <div
-                    style={{
-                        backgroundColor: "#7209b7",
-                        padding: "10px",
-                    }}
-                >
-                    <h2 style={{ margin: 0, fontSize: "16px", color: "#fff" }}>
-                        Mandame mensajes anónimos
-                    </h2>
+        <div className="story-modal-overlay" onClick={onClose}>
+            <div className="story-modal-content" onClick={(e) => e.stopPropagation()}>
+                <button className="close-button" onClick={onClose}>X</button>
+                <div className="story-body" ref={storyContentRef}>
+                    <p className="story-message">{message}</p>
                 </div>
-
-                {/* Mensaje */}
-                <div
-                    style={{
-                        backgroundColor: "#fff",
-                        padding: "20px",
-                        color: "#000",
-                        fontSize: "16px",
-                        lineHeight: "1.4",
-                    }}
-                >
-                    {message.message}
-                </div>
+                <button className="share-button" onClick={compartirImagenStory}>
+                    Compartir como Historia
+                </button>
             </div>
-
-            <button
-                onClick={compartirImagenStory}
-                style={{
-                    position: "absolute",
-                    bottom: "40px",
-                    padding: "10px 20px",
-                    fontSize: "16px",
-                    borderRadius: "10px",
-                    background: "#fff",
-                    color: "#7209b7",
-                    cursor: "pointer",
-                }}
-            >
-                Compartir Story
-            </button>
         </div>
     );
 };
 
 export default StoryContent;
-
